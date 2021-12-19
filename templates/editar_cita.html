@@ -1,0 +1,26 @@
+
+{% extends "maestra.html" %}
+{% block titulo %}
+Editar cita
+{% endblock %}
+{% block contenido %}
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Editar cita</h3>
+            <form action="{{url_for('actualizar_cita')}}" method="post">
+                {# Enviar el id en un campo oculto #}
+                <input type="hidden" name="id" value="{{cita[0]}}">
+                <label for="nombre">Nombre:</label>
+                <input value="{{cita[1]}}" required type="text" class="input" placeholder="Nombre" name="nombre" id="nombre">
+                <label for="consulta">Consulta</label>
+                <input value="{{cita[2]}}" required type="text" class="input" placeholder="Consulta" name="consulta" id="consulta">
+                <label for="telefono">Telefono</label>
+                <input value="{{cita[3]}}" required type="number" class="input" placeholder="Telefono" name="telefono" id="telefono">
+                <button type="submit" class="button is-success mt-2">Guardar</button>
+                <a href="{{url_for('citas')}}" class="button is-primary mt-2">Volver</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

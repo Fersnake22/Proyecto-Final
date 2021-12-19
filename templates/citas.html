@@ -1,0 +1,44 @@
+
+{% extends "maestra.html" %}
+{% block titulo %} Citas {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Citas</h3>
+            <a href="{{url_for('formulario_agregar_cita')}}" class="button is-success">Agregar</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Consulta</th>
+                        <th>Telefono</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr>
+                        <td>{{cita[1]}}</td>
+                        <td>{{cita[2]}}</td>
+                        <td>{{cita[3]}}</td>
+                        <td>
+                            {# Pasar el id (lo que hay en cita[0] #}
+                            <a href="{{url_for('editar_cita', id=cita[0])}}" class="button is-info">Editar</a>
+                        </td>
+                        <td>
+                            <form action="{{url_for('eliminar_cita')}}" method="POST">
+                                <input type="hidden" name="id" value="{{cita[0]}}">
+                                <button class="button is-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
